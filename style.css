@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;400&display=swap');
+body
+{
+    font-family:'Oswald',sans-serif;
+    overflow-x: hidden;
+}
+#encabezado
+{
+    
+    border-bottom: 1px solid #000;
+}
+.carousel-inner
+{
+    max-height: 30rem;
+}
+.loginfondo
+{
+    background-image: url("https://png.pngtree.com/thumb_back/fw800/background/20201123/pngtree-warm-tones-minimalist-background-image_497735.jpg");
+}
