@@ -1,0 +1,62 @@
+CREATE TABLE Cliente (
+  Id INT PRIMARY KEY IDENTITY,
+  TipoDocumento VARCHAR(50) NOT NULL,
+  NumeroDocumento VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Restriccion (
+  Id INT PRIMARY KEY IDENTITY,
+  ClienteId INT FOREIGN KEY REFERENCES Cliente(Id),
+  Motivo VARCHAR(50) NOT NULL,
+  FechaVigencia DATETIME NOT NULL
+);
+
+CREATE TABLE Producto (
+  Id INT PRIMARY KEY IDENTITY,
+  Nombre VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Paquete (
+  Id INT PRIMARY KEY IDENTITY,
+  Crediticio BIT NOT NULL,
+  ClienteId INT FOREIGN KEY REFERENCES Cliente(Id)
+);
+
+CREATE TABLE TarjetaCredito (
+  Id INT PRIMARY KEY IDENTITY,
+  PaqueteId INT FOREIGN KEY REFERENCES Paquete(Id),
+  Codigo VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Prestamo (
+  Id INT PRIMARY KEY IDENTITY,
+  Tipo VARCHAR(50) NOT NULL,
+  ClienteId INT FOREIGN KEY REFERENCES Cliente(Id)
+);
+
+CREATE TABLE SolicitudPaquete (
+  Id INT PRIMARY KEY IDENTITY,
+  ClienteId INT FOREIGN KEY REFERENCES Cliente(Id),
+  PaqueteId INT FOREIGN KEY REFERENCES Paquete(Id),
+  Aprobada BIT NOT NULL,
+  FechaAprobacion DATETIME NOT NULL
+);
+
+CREATE TABLE FormularioRaiz (
+  Id INT PRIMARY KEY IDENTITY,
+  SolicitudPaqueteId INT FOREIGN KEY REFERENCES SolicitudPaquete(Id)
+);
+
+CREATE TABLE FormularioRechazo (
+  Id INT PRIMARY KEY IDENTITY,
+  SolicitudPaqueteId INT FOREIGN KEY REFERENCES SolicitudPaquete(Id),
+  MotivoRechazo VARCHAR(50) NOT NULL,
+  FechaRechazo DATETIME NOT NULL
+);
+
+CREATE TABLE SolicitudPrestamo (
+  Id INT PRIMARY KEY IDENTITY,
+  ClienteId INT FOREIGN KEY REFERENCES Cliente(Id),
+  PrestamoId INT FOREIGN KEY REFERENCES Prestamo(Id),
+  FormularioRaizId INT FOREIGN KEY REFERENCES FormularioRaiz(Id)
+);
