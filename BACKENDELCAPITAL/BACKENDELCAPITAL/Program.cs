@@ -4,6 +4,11 @@
     {
         static void Main(string[] args)
         {
+            // ArCH.ef.Relational
+            //Microsoftefc.Relationa<.RELATIONAL
+            //SQLSERVER
+            //TOOLS
+            //EFCORE WEB CODEGENRATION
             public class Cliente
         {
             public int Id { get; set; }
@@ -36,7 +41,7 @@
 
         public class Paquete : Producto
         {
-            public bool Crediticio { get; set; }
+            public bool esCrediticio { get; set; }
             public List<TarjetaCredito> TarjetasCredito { get; set; }
 
             public Paquete()
@@ -53,7 +58,9 @@
 
         public class Prestamo : Producto
         {
-            public string Tipo { get; set; }
+            public bool esPrendario { get; set; }
+            public int ClienteId {get; set;}
+            public Cliente Cliente {get; set;}
         }
 
         public class SolicitudPaquete
@@ -69,6 +76,7 @@
         {
             public int Id { get; set; }
             public SolicitudPaquete SolicitudPaquete { get; set; }
+            public DateTime FechaAprobacion {get; set;}
         }
 
         public class FormularioRechazo
